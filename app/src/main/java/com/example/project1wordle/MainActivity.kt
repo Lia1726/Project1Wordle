@@ -1,8 +1,10 @@
 package com.example.project1wordle
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -26,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         var counter = 0
 
         //Visibility of outputs
+        //Displaying text
         val revealGuess1 = findViewById<TextView>(R.id.guess1)
         val revealGuess2 = findViewById<TextView>(R.id.guess2)
         val revealGuess3 = findViewById<TextView>(R.id.guess3)
@@ -33,18 +36,21 @@ class MainActivity : AppCompatActivity() {
         val revealCheck2 = findViewById<TextView>(R.id.check2)
         val revealCheck3 = findViewById<TextView>(R.id.check3)
 
+        //Check guesses based on user
         val checkGuess1 = findViewById<TextView>(R.id.guessDisplay1)
         val checkGuess2 = findViewById<TextView>(R.id.guessDisplay2)
         val checkGuess3 = findViewById<TextView>(R.id.guessDisplay3)
-
         val checkDisplay1 = findViewById<TextView>(R.id.checkDisplay1)
         val checkDisplay2 = findViewById<TextView>(R.id.checkDisplay2)
         val checkDisplay3 = findViewById<TextView>(R.id.checkDisplay3)
 
         guessButton.setOnClickListener {
+            it.hiddenKeyboard()
             val userEnteredWord = userGuesses.text.toString().uppercase()
             if (checkDisplay1.text.equals("OOOO") || checkDisplay1.text.equals("OOOO") || checkDisplay1.text.equals("OOOO")){
                 actualWord.visibility = View.VISIBLE
+                guessButton.visibility = View.INVISIBLE
+                userGuesses.visibility = View.INVISIBLE
             }
             else if (counter == 0) {
                 counter++;
@@ -80,6 +86,8 @@ class MainActivity : AppCompatActivity() {
                 checkDisplay3.visibility = View.VISIBLE
                 userGuesses.text.clear()
                 actualWord.visibility = View.VISIBLE
+                guessButton.visibility = View.INVISIBLE
+                userGuesses.visibility = View.INVISIBLE
             }
         }
 
@@ -109,5 +117,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return result
+    }
+
+    /**
+     * Hides the keyboard
+     */
+     fun View.hiddenKeyboard(){
+        val hide = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        hide.hideSoftInputFromWindow(windowToken, 0)
     }
 }

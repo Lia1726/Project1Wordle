@@ -35,7 +35,7 @@ Here's a walkthrough of implemented user stories:
 <img src='https://user-images.githubusercontent.com/79615054/189808997-5f771973-a216-4716-ad8d-7efcbccb2e8c.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 <!-- Replace this with whatever GIF tool you used! -->
-GIF created with ...  
+GIF created with LICEcap
 <!-- Recommended tools:
 [Kap](https://getkap.co/) for macOS
 [ScreenToGif](https://www.screentogif.com/) for Windows
